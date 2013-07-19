@@ -114,20 +114,3 @@
 	};
 }( jQuery ));
 
-
-$(".draggable").resizable(
-	{
-		snap_to_grid: true,
-		horizontal: true,
-		vertical: true,
-		snap_to_width: 100,
-		snap_to_height: 100,
-		before: function() {
-			my_var = "hello";
-			console.log("operation before");
-		},
-		complete: function() {
-			console.log("operation finished");
-		}
-	}
-);
