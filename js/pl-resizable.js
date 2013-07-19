@@ -25,7 +25,9 @@
 				hor: "horizontal",
 				ver: "vertical",
 				bot: "both",
-			}
+			},
+			body: $("body"),
+			document: $(document)
 		};
 
 		this.addClass("pl-resizable");
@@ -49,6 +51,14 @@
 				if (settings.before)
 					settings.before();
 
+				if($(__this).hasClass("pl-handle-horizontal")) {
+					app.body.css({"cursor": "ew-resize"});
+				} else if($(__this).hasClass("pl-handle-vertical")) {
+					app.body.css({"cursor": "ns-resize"});
+				} else if($(__this).hasClass("pl-handle-both")) {
+					app.body.css({"cursor": "se-resize"});
+				}
+
 				container = _this.parent();
 				containeroff = container.offset();
 
@@ -59,8 +69,8 @@
 				positionFix_x = (off.left - offContainer.left);
 				positionFix_y = (off.top - offContainer.top);
 
-				$('body').attr('unselectable','on').css('UserSelect','none').css('MozUserSelect','none');
-				$(document).bind('mousemove', function(e) {
+				app.body.attr('unselectable','on').css('UserSelect','none').css('MozUserSelect','none');
+				app.document.bind('mousemove', function(e) {
 
 					mouse_x = (e.pageX-off.left);
 					mouse_y = (e.pageY-off.top);
@@ -69,7 +79,7 @@
 						if(settings.limit_to_container && (e.pageX-containeroff.left) > container.width()) {
 							mouse_x = container.width() - positionFix_x;
 						}
-						if((e.pageX-off.left) < settings.min_limit_x) {
+						if(mouse_x < settings.min_limit_x) {
 							mouse_x = settings.min_limit_x;
 						}
 
@@ -85,16 +95,14 @@
 						if(settings.limit_to_container && (e.pageY-containeroff.top) > container.height()) {
 							mouse_y = container.height() - positionFix_y;
 						}
-						if((e.pageY-off.top) < settings.min_limit_y) {
+						if(mouse_y < settings.min_limit_y) {
 							mouse_y = settings.min_limit_y;
 						}
 						if(settings.snap_to_grid) {
 							snap = (Math.round(mouse_y / settings.snap_to_height) * settings.snap_to_height);
 							app.parent.css({"height":snap+"px"});
 						} else {
-							if((e.pageY-off.top) > 100) {
-								app.parent.css({"height":mouse_y+"px"});
-							}
+							app.parent.css({"height":mouse_y+"px"});
 						}
 					}
 
@@ -102,10 +110,10 @@
 			});
 		}
 
-		$(document).on('mouseup', function() {
-			$('body').removeAttr('unselectable');
-			$('body').css({'UserSelect':'', 'MozUserSelect':''});
-			$(document).unbind('mousemove');
+		app.document.on('mouseup', function() {
+			app.body.removeAttr('unselectable');
+			app.body.css({'UserSelect':'', 'MozUserSelect':'', 'cursor':''});
+			app.document.unbind('mousemove');
 
 			if (settings.complete)
 				settings.complete();
