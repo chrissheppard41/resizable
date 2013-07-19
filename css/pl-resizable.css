@@ -1,0 +1,40 @@
+.pl-resizable {
+  position: relative; }
+  .pl-resizable .pl-handle-horizontal {
+    background-color: #000;
+    right: 0;
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: ew-resize;
+    filter: alpha(opactiy=50);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5; }
+  .pl-resizable .pl-handle-vertical {
+    background-color: #000;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    width: 100%;
+    cursor: ns-resize;
+    filter: alpha(opactiy=50);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5; }
+  .pl-resizable .pl-handle-both {
+    right: 0;
+    position: absolute;
+    bottom: 0;
+    height: 10px;
+    width: 10px;
+    cursor: se-resize;
+    filter: alpha(opactiy=50);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5; }
