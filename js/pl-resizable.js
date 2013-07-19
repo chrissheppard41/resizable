@@ -53,9 +53,11 @@
 
 				if($(__this).hasClass("pl-handle-horizontal")) {
 					app.body.css({"cursor": "ew-resize"});
-				} else if($(__this).hasClass("pl-handle-vertical")) {
+				}
+				if($(__this).hasClass("pl-handle-vertical")) {
 					app.body.css({"cursor": "ns-resize"});
-				} else if($(__this).hasClass("pl-handle-both")) {
+				}
+				if($(__this).hasClass("pl-handle-both")) {
 					app.body.css({"cursor": "se-resize"});
 				}
 
